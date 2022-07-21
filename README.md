@@ -3,6 +3,8 @@
 Repository for working with a small Python and flask application that displays
 and serves static web files (HTML/CSS).
 
+Added Ansible playbook to automate the dockerfile
+
 ### Prerequisites
 
 - Python 3
@@ -27,6 +29,8 @@ python3 app.py
 ```
 
 Please note: the application does work as given.
+
+
 
 ### License
 
