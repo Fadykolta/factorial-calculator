@@ -1,0 +1,28 @@
+---
+- name: "Build container with ansible"
+  hosts: localhost
+  tasks:
+  - name: stop running container
+    command: docker stop factorial-Calculator
+    ignore_errors: yes
+
+  - name: remove stopped container
+    command: docker rm factorial-Calculator
+    ignore_errors: yes
+  
+  - name: remove used image
+    command: docker rmi factorial-Calculator-img
+    ignore_errors: yes
+    
+  - name: build docker image from dockerfile
+    command: docker build -t factorial-calculator-img .  
+
+  - name: create tag to image
+    command: docker tag factorial-calculator-img fadydevops/factorial-calculator:tagname
+
+  - name: push image to dockerhub
+    command: docker push fadydevops/factorial-calculator:tagname
+
+
+  - name: run container from image
+    command: docker run -d --name factorial-Calculator -p 5000:5000 factorial-calculator-img
